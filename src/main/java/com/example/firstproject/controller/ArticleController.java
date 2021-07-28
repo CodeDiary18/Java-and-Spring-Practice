@@ -6,6 +6,7 @@ import com.example.firstproject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -15,6 +16,12 @@ public class ArticleController {
 
     @Autowired  //스프링 부트가 미리 생성해놓은 객체를 가져다가 자동 연결!
     private ArticleRepository articleRepository;
+
+    @GetMapping("/articles")
+    public String index(Model model) {
+        model.addAttribute("msg","안녕하세요! 반갑습니다!");
+        return "articles/index";
+    }
 
     @GetMapping("/articles/new")
     public String newArticleForm(){
