@@ -1,0 +1,28 @@
+{{>layouts/header}}
+<!-- jumbotron -->
+<div class="jumbotron">
+    <h1>Article 상세보기</h1>
+    <hr>
+    <p>articles/show.mustache</p>
+</div>
+<!-- table -->
+<table class="table table-hover">
+    <tbody>
+    {{#article}}
+        <tr>
+            <th>글번호</th>
+            <td>{{id}}</td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td>{{title}}</td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>{{content}}</td>
+        </tr>
+    {{/article}}
+    </tbody>
+</table>
+<a href="/articles" class="btn btn-success btn-block">목록으로</a>
+{{>layouts/footer}}

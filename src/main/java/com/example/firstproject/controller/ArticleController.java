@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -49,5 +50,15 @@ public class ArticleController {
         log.info(article.toString());
         //System.out.println(saved.toString());
         return "redirect:/articles";
+    }
+
+    @GetMapping("/articles/{id}")
+    public String show(@PathVariable Long id, // url의 {id} 값을 변수화!
+                       Model model) {
+        // id를 통해 Article을 가져옴!
+        Article article = articleRepository.findById(id).orElse(null);
+        // article을 뷰 페이지로 전달
+        model.addAttribute("article", article);
+        return "articles/show";
     }
 }

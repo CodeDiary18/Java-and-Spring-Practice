@@ -19,7 +19,9 @@
     {{#articles}}
         <tr>
             <td>{{id}}</td> <!-- id 출력 -->
-            <td>{{title}}</td> <!-- title 출력 -->
+            <td>
+                <a href="/articles/{{id}}">{{title}}</a> <!-- 링크 추가 -->
+            </td>
         </tr>
     {{/articles}}
     </tbody>
