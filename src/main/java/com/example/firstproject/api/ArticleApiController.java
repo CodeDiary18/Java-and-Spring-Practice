@@ -17,6 +17,7 @@ public class ArticleApiController {
     private ArticleRepository articleRepository;
 
     private final ArticleService articleService;
+
     @PostMapping("/api/articles") // Post 요청이 "/api/articles" url로 온다면, 메소드 수행!
     public Long create(@RequestBody ArticleForm form) { // JSON 데이터를 받아옴!
         log.info(form.toString()); // 받아온 데이터 확인!
@@ -56,5 +57,10 @@ public class ArticleApiController {
         log.info("saved: " + saved.toString());
         // 아이디 반환
         return saved.getId();
+    }
+
+    @DeleteMapping("/api/articles/{id}")    // HTTP의 DELETE 메소드로 "/api/articles{id}" 요청이 온다면,
+    public Long destroy(@PathVariable Long id) {
+        return articleService.destroy(id); // 서비스 객체가 destroy()를 수행!
     }
 }

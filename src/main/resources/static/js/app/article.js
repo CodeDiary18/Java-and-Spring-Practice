@@ -7,12 +7,17 @@ var article = {
     // 버튼 선택
     const createBtn = document.querySelector('#article-create-btn');
     const updateBtn = document.querySelector('#article-update-btn');
+    const destroyBtn = document.querySelector('#article-destroy-btn');
+
     // 버튼 클릭 시, 동작 할 메소드를 연결!
     if (createBtn != null) { // createBtn이 있다면 수행!
       createBtn.addEventListener('click', _this.create);
     }
     if (updateBtn) { // updateBtn이 있다면 수행!
       updateBtn.addEventListener('click', _this.update);
+    }
+    if (destroyBtn) { // destroyBtn이 있다면 수행!
+          destroyBtn.addEventListener('click', _this.destroy);
     }
   },
   // article 생성 메소드
@@ -65,8 +70,30 @@ var article = {
         alert('게시글 수정에 문제가 생겼습니다.');
       }
     });
+  },
+  // article 삭제 메소드
+  destroy: function() {
+    // url에서 id를 추출!
+    var split = location.pathname.split('/');
+    var id = split[split.length - 1];
+    // 데이터 삭제 요청을 보냄
+    // fetch(URL, HTTP_REQUEST)
+    fetch('/api/articles/' + id, {
+      method: 'DELETE', // DELETE 방식! HTTP 요청.
+    }).then(function(response) { // 응답 처리!
+      // 요청 성공!
+      if (response.ok) {
+        alert('글이 삭제 되었습니다.');
+        window.location.href='/articles'; // 목록 페이지로 이동!(리다이렉트)
+      } else { // 요청 실패..
+        alert('글을 삭제할 수 없습니다.');
+      }
+    });
   }
-  // 추후, 삭제 메소드 추가 예정..!
 };
+
+
+
+
 // 객체 초기화
 article.init();
