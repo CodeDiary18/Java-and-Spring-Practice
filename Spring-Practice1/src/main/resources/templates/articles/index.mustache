@@ -1,0 +1,29 @@
+{{>layouts/header}}
+<!-- jumbotron -->
+<div class="jumbotron">
+    <h1>Article 목록</h1>
+    <hr>
+    <p>articles/index.mustache</p>
+    <a href="/articles/new" class="btn btn-primary">글쓰기</a>
+</div>
+<!-- articles table -->
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>제목</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 모델에서 보내준 articles를 사용! 데이터가 여러개라면 반복 출력 됨! https://taegon.kim/archives/4910 -->
+    {{#articles}}
+        <tr>
+            <td>{{id}}</td> <!-- id 출력 -->
+            <td>
+                <a href="/articles/{{id}}">{{title}}</a> <!-- 링크 추가 -->
+            </td>
+        </tr>
+    {{/articles}}
+    </tbody>
+</table>
+{{>layouts/footer}}
