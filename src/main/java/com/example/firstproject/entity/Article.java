@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @Getter
-public class Article {
+public class Article extends BaseTime{
     @Id //대표값
     @GeneratedValue(strategy = GenerationType.IDENTITY) //1,2,3 .. 자동생성
     private Long id;    //사람으로 따지면 주민번호
