@@ -23,6 +23,13 @@
         </tr>
     {{/article}}
     </tbody>
+    <!-- 수정 버튼 추가 -->
+    <tfoot>
+    <tr>
+        <th></th>
+        <td><a class="btn btn-info" href="/articles/edit/{{id}}">수정</a></td>
+    </tr>
+    </tfoot>
 </table>
 <a href="/articles" class="btn btn-success btn-block">목록으로</a>
 {{>layouts/footer}}

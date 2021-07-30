@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j  // 로깅을 위한 어노테이션
@@ -61,4 +59,15 @@ public class ArticleController {
         model.addAttribute("article", article);
         return "articles/show";
     }
+
+    @GetMapping("/articles/edit/{id}")
+    public String edit(@PathVariable Long id,
+                       Model model) {
+        Article target = articleRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 Article이 없습니다.")
+        );
+        model.addAttribute("article", target);
+        return "articles/edit";
+    }
+
 }

@@ -4,57 +4,19 @@
     <hr>
     <p>articles/new.mustache</p>
 </div>
-
 <form class="container">
-    <div class="mb-3">
-        <label class="form-label">제목</label>
-        <input type="text" class="form-control" name="title" id="article-title" placeholder="제목을 입력하세요!">
+    <div class="form-group">
+        <label for="title">제목</label>
+        <!-- name="title" 추가, DTO의 필드명과 일치해야 함! -->
+        <input name="title" type="text" class="form-control" id="article-title" placeholder="제목을 입력하세요">
     </div>
-    <div class="mb-3">
-        <label class="form-label">내용</label>
-        <textarea class="form-control" rows="3" name="content" id="article-content" placeholder="내용을 입력하세요!"></textarea>
+    <div class="form-group">
+        <label for="content">내용</label>
+        <!-- name="content" 추가, DTO의 필드명과 일치해야 함! -->
+        <textarea name="content" class="form-control" id="article-content" placeholder="내용을 입력하세요" rows="3"></textarea>
     </div>
-    <button type="button" class="btn btn-primary" id="article-create-btn">Submit</button>
+    <!-- type="button"으로 변경, id값 추가 -->
+    <button type="button" class="btn btn-primary" id="article-create-btn">제출</button>
 </form>
-<Script>
-  // article 객체 생성
-  var article = {
-    // 초기화(이벤트 등록) 메소드
-    init: function() {
-      // 스코프 충돌 방지! (https://mobicon.tistory.com/189)
-      var _this = this;
-      // 생성 버튼 선택
-      const createBtn = document.querySelector('#article-create-btn');
-      // 생성 버튼 클릭 시, 동작 할 메소드를 연결!
-      createBtn.addEventListener('click', _this.create);
-    },
-    // article 생성 메소드
-    create: function() {
-      // form 데이터를 JSON으로 만듬
-      var data = {
-        title: document.querySelector('#article-title').value,
-        content: document.querySelector('#article-content').value,
-      };
-      // 데이터 생성 요청을 보냄
-      // fetch(URL, HTTP_REQUEST)
-      fetch('/api/articles', {
-        method: 'POST', // POST 방식으로, HTTP 요청.
-        body: JSON.stringify(data), // 위에서 만든 폼 데이터(data)를 함께 보냄.
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function(response) { // 응답 처리!
-        // 요청 성공!
-        if (response.ok) {
-          alert('게시글이 작성 되었습니다.');
-          window.location.href='/articles'; // 해당 URL로 브라우저를 새로고침!
-        } else { // 요청 실패..
-          alert('게시글 작성에 문제가 생겼습니다.');
-        }
-      });
-    }
-  };
-  // 객체 초기화
-  article.init();
-</script>
+<Script src="/js/app/article.js"></script> <!-- article.js 삽입 -->
 {{>layouts/footer}}
