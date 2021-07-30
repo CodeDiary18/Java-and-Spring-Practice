@@ -1,0 +1,18 @@
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+FINEST: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+FINER: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+FINE: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+CONFIG: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+INFO: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+WARNING: log test
+7월 15, 2021 2:39:08 오전 p11.MyLogger log
+SEVERE: log test
+7월 15, 2021 2:42:40 오전 p11.MyLogger warning
+WARNING: name must not be null
+7월 15, 2021 2:42:40 오전 p11.MyLogger warning
+WARNING: 이름이 너무 길어요
