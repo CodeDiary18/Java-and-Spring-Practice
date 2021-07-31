@@ -1,7 +1,9 @@
 package com.example.aop.controller;
 
+import com.example.aop.annotation.Timer;
 import com.example.aop.dto.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,5 +21,22 @@ public class RestApiController {
     public User post(@RequestBody User user) {
         log.info("----> post method : " + user.toString());
         return user;
+    }
+
+    @Timer
+    @DeleteMapping("/delete")
+    public void delete() throws InterruptedException {
+/*
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+*/
+
+        //db logic
+        Thread.sleep(1000 * 2);
+
+/*
+        stopWatch.stop();
+        System.out.println("total time : "+stopWatch.getTotalTimeSeconds());
+*/
     }
 }
