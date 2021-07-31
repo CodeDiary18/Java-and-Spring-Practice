@@ -6,5 +6,5 @@ import lombok.Data;
 public class User {
     private String id;
     private String pw;
-    private int age;
+    private String email;
 }
