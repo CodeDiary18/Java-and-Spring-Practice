@@ -1,5 +1,6 @@
 package com.example.client.service;
 
+import com.example.client.dto.UserRequest;
 import com.example.client.dto.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class RestTemplateService {
         URI uri = UriComponentsBuilder.
                 fromUriString("http://localhost:9090")
                 .path("/api/server/hello")
-                .queryParam("name","cd18")
-                .queryParam("age",10)
+                .queryParam("name", "cd18")
+                .queryParam("age", 10)
                 .encode()
                 .build()
                 .toUri();
@@ -30,5 +31,31 @@ public class RestTemplateService {
         System.out.println(result.getStatusCode());
         System.out.println(result.getBody());
         return result.getBody();
+    }
+
+    public void post() {
+        //http://localhost:9090/api/server/user/{userId}/name/{userName}
+        URI uri = UriComponentsBuilder
+                .fromUriString("http://localhost:9090")
+                .path("/api/server/user/{userId}/name/{userName}")
+                .encode()
+                .build()
+                .expand(100,"cd18")
+                .toUri();
+        System.out.println(uri);
+
+        // http body -> object -> object mapper -> json -> rest template -> http body json
+        UserRequest req = new UserRequest();
+        req.setName("cd18");
+        req.setAge(10);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserResponse> response = restTemplate.postForEntity(uri, req, UserResponse.class);
+
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getHeaders());
+        System.out.println(response.getBody());
+
+//        return response.getBody();
     }
 }
